@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.birthcertify.controllers.BaseViewController" fx:id="baseBorderPane">
+    <!-- Top Menu Bar -->
+    <top>
+        <MenuBar>
+            <fx:include fx:id="menuBar" source="MenuBar.fxml"/>
+        </MenuBar>
+    </top>
+
+    <!-- Toolbar for quick actions -->
+    <left>
+        <ToolBar>
+            <Button text="Home" onAction="#loadHome"/>
+            <Button text="Logout" onAction="#logout"/>
+        </ToolBar>
+    </left>
+
+    <!-- Center area where pages will be loaded -->
+    <center>
+        <AnchorPane fx:id="contentArea">
+            <!-- Content will be loaded here -->
+        </AnchorPane>
+    </center>
+
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <Label text="Status: Ready" />
+    </bottom>
+</BorderPane>

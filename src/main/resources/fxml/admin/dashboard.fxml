@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.birthcertify.controllers.AdminDashboardController"
+      spacing="15" alignment="TOP_CENTER">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Admin Dashboard Header -->
+    <HBox style="-fx-background-color: #f0f7ff; -fx-background-radius: 5;">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        <VBox HBox.hgrow="ALWAYS">
+            <Text text="Administrator Dashboard" styleClass="heading">
+                <font>
+                    <Font name="System Bold" size="20"/>
+                </font>
+            </Text>
+            <Text text="System overview and application management">
+                <font>
+                    <Font size="14"/>
+                </font>
+            </Text>
+        </VBox>
+        <VBox alignment="CENTER_RIGHT">
+            <Button text="System Settings" onAction="#openSystemSettings"/>
+        </VBox>
+    </HBox>
+
+    <!-- Statistics Overview -->
+    <HBox spacing="15">
+        <!-- Total Applications Card -->
+        <VBox styleClass="dashboard-card" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="Total Applications" styleClass="card-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <Text fx:id="totalApplicationsText" text="0" styleClass="large-number">
+                <font>
+                    <Font size="36"/>
+                </font>
+            </Text>
+            <Text fx:id="applicationsTrendText" text="+5% from last month" styleClass="trend"/>
+        </VBox>
+
+        <!-- Pending Approval Card -->
+        <VBox styleClass="dashboard-card" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="Pending Approval" styleClass="card-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <Text fx:id="pendingApprovalText" text="0" styleClass="large-number">
+                <font>
+                    <Font size="36"/>
+                </font>
+            </Text>
+            <Button text="Review Applications" onAction="#reviewApplications"/>
+        </VBox>
+
+        <!-- Users Card -->
+        <VBox styleClass="dashboard-card" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="Registered Users" styleClass="card-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <Text fx:id="registeredUsersText" text="0" styleClass="large-number">
+                <font>
+                    <Font size="36"/>
+                </font>
+            </Text>
+            <Button text="Manage Users" onAction="#manageUsers"/>
+        </VBox>
+    </HBox>
+
+    <!-- Charts Section -->
+    <HBox spacing="15" VBox.vgrow="ALWAYS">
+        <!-- Applications by Status -->
+        <VBox style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS" minHeight="300">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="Applications by Status" styleClass="section-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <PieChart fx:id="applicationStatusChart" VBox.vgrow="ALWAYS" legendVisible="true"/>
+        </VBox>
+
+        <!-- Applications Over Time -->
+        <VBox style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS" minHeight="300">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="Applications Over Time" styleClass="section-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <BarChart fx:id="applicationsTimeChart" VBox.vgrow="ALWAYS" legendVisible="false">
+                <xAxis>
+                    <CategoryAxis label="Month"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Applications"/>
+                </yAxis>
+            </BarChart>
+        </VBox>
+    </HBox>
+
+    <!-- Recent Applications Table -->
+    <VBox style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        <HBox>
+            <VBox HBox.hgrow="ALWAYS">
+                <Text text="Recent Applications" styleClass="section-title">
+                    <font>
+                        <Font name="System Bold" size="16"/>
+                    </font>
+                </Text>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <ComboBox fx:id="filterStatusComboBox" promptText="Filter by Status"/>
+                <TextField fx:id="searchApplicationField" promptText="Search applications..."/>
+            </HBox>
+        </HBox>
+        <TableView fx:id="applicationsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="80"/>
+                <TableColumn fx:id="applicantNameColumn" text="Applicant Name" prefWidth="150"/>
+                <TableColumn fx:id="submissionDateColumn" text="Submission Date" prefWidth="120"/>
+                <TableColumn fx:id="applicationStatusColumn" text="Status" prefWidth="100"/>
+                <TableColumn fx:id="assignedToColumn" text="Assigned To" prefWidth="120"/>
+                <TableColumn fx:id="actionColumn" text="Actions" prefWidth="120"/>
+            </columns>
+        </TableView>
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <padding>
+                <Insets top="10" right="0" bottom="0" left="0"/>
+            </padding>
+            <Pagination fx:id="applicationsPagination"/>
+        </HBox>
+    </VBox>
+
+    <!-- Quick Action Buttons -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Generate Reports" onAction="#generateReports" styleClass="primary-button"/>
+        <Button text="System Logs" onAction="#viewSystemLogs" styleClass="secondary-button"/>
+        <Button text="Backup System" onAction="#backupSystem" styleClass="secondary-button"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.birthcertify.controllers.registrant.RegistrantDashboardController"
+      spacing="15" alignment="TOP_CENTER">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Welcome Section -->
+    <HBox style="-fx-background-color: #e6f7ff; -fx-background-radius: 5;">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        <VBox HBox.hgrow="ALWAYS">
+            <Text text="Welcome to Your Dashboard" styleClass="heading">
+                <font>
+                    <Font name="System Bold" size="20"/>
+                </font>
+            </Text>
+            <Text text="Track your applications and manage your birth certificate requests">
+                <font>
+                    <Font size="14"/>
+                </font>
+            </Text>
+        </VBox>
+    </HBox>
+
+    <!-- Statistics Overview -->
+    <HBox spacing="15">
+        <!-- Applications Card -->
+        <VBox styleClass="dashboard-card" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="My Applications" styleClass="card-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <Text fx:id="applicationCountText" text="0" styleClass="large-number">
+                <font>
+                    <Font size="36"/>
+                </font>
+            </Text>
+            <Button text="View All Applications" onAction="#loadApplications"/>
+        </VBox>
+
+        <!-- Pending Card -->
+        <VBox styleClass="dashboard-card" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="Pending" styleClass="card-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <Text fx:id="pendingCountText" text="0" styleClass="large-number">
+                <font>
+                    <Font size="36"/>
+                </font>
+            </Text>
+            <Button text="Check Status" onAction="#checkStatus"/>
+        </VBox>
+
+        <!-- Approved Card -->
+        <VBox styleClass="dashboard-card" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Text text="Approved" styleClass="card-title">
+                <font>
+                    <Font name="System Bold" size="16"/>
+                </font>
+            </Text>
+            <Text fx:id="approvedCountText" text="0" styleClass="large-number">
+                <font>
+                    <Font size="36"/>
+                </font>
+            </Text>
+            <Button text="Download Certificates" onAction="#downloadCertificates"/>
+        </VBox>
+    </HBox>
+
+    <!-- Recent Applications Table -->
+    <VBox style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        <Text text="Recent Applications" styleClass="section-title">
+            <font>
+                <Font name="System Bold" size="16"/>
+            </font>
+        </Text>
+        <TableView fx:id="recentApplicationsTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="applicationIdColumn" text="Application ID" prefWidth="120"/>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="150"/>
+                <TableColumn fx:id="dateSubmittedColumn" text="Date Submitted" prefWidth="120"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Quick Actions -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="New Application" onAction="#newApplication" styleClass="primary-button"/>
+        <Button text="Upload Documents" onAction="#uploadDocuments" styleClass="secondary-button"/>
+        <Button text="Contact Support" onAction="#contactSupport" styleClass="secondary-button"/>
+    </HBox>
+</VBox>

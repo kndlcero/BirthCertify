@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="registerContainer" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.birthcertify.controllers.auth.RegisterController"
+      spacing="10" alignment="CENTER">
+      
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Register" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <TextField fx:id="regEmailField" promptText="Email" maxWidth="300"/>
+
+    <PasswordField fx:id="regPasswordField" promptText="Password (min 6 chars)" maxWidth="300"/>
+
+    <TextField fx:id="fullNameField" promptText="Full Name" maxWidth="300"/>
+
+    <Label fx:id="regErrorLabel" textFill="red" visible="false" wrapText="true" maxWidth="300"/>
+
+    <Button fx:id="registerButton" text="Register" maxWidth="300" onAction="#handleRegister"/>
+
+    <Label text="Already have an account?" />
+
+    <Button fx:id="loginLink" text="Login here" onAction="#switchToLogin" maxWidth="300"/>
+
+</VBox>

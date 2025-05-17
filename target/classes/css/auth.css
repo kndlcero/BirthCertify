@@ -1,0 +1,39 @@
+.input-field {
+    -fx-min-width: 250px;
+    -fx-pref-height: 35px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-padding: 0 10px;
+}
+
+.primary-button {
+    -fx-min-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-color: #0066cc;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #0052a3;
+}
+
+.secondary-button {
+    -fx-min-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-color: white;
+    -fx-text-fill: #0066cc;
+    -fx-border-color: #0066cc;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #f0f7ff;
+}
